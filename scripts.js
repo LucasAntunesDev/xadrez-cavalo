@@ -1,27 +1,44 @@
-const verde = (v) => v.style.backgroundImage = 'linear-gradient(to top right, var(--green), var(--green2))'
-const disable = (b) => b.disabled = true
+const disable = (b) => document.getElementById(b).disabled = true
+const able = (b) => document.getElementById(b).disabled = false
+const abled = (a) => a.classList.add('abled')
+const verde = (v) => v.classList.add('verde')
+const removerVerde = (r) => r.classList.contains('verde') ? r.classList.remove('verde') : ''
+const btnVerde = document.getElementsByClassName('verde')
+const diferenca = (a, b) => Math.abs(a - b)
+const teste = () => document.getElementById('casa16').style.border = 'solid 4px red'
 
+//x += 2, y ++
 const posiciona = ({ x, y }) => {
-    for (let i = 0; i < 8; i++) {
-        for (let j = 0; j < 8; j++) {
-            // if (j == y || i == x) {
-            // if (j - x == x  || i - y == y) {
-            if (j - 2 == x && i - 1 == y ||
-                j - 3 == x && i == y ||
-                j == x && i - 1 == y ||
-                j + 1 == x && i == y ||
-                j + 1 == x && i +2 == y||
-                j == x && i +3 == y||
-                j -2== x && i +3 == y||
-                j -3== x && i +2 == y) {
-                // alert('arere')
-                verde(document.getElementById(`casa${i * 8 + j}`))
-                document.getElementById(`casa${i * 8 + j}`).disabled = false
-                // document.getElementById(`casa${i*8+j}`).innerHTML='Válido'
+    for (let coluna = 0; coluna < 8; coluna++) {
+        for (let linha = 0; linha < 8; linha++) {
+
+            //x+j = x && y+j=y+2;
+            // if (Math.abs(j) - 2 == Math.abs(x) && i - 1 == Math.abs(y) 
+            // if(y+x == y+2 || x+1==x+1) {
+
+            if (coluna - 2 == Math.abs(x) && linha - 1 == Math.abs(y) ||
+            coluna - 3 == Math.abs(x) && linha == Math.abs(y) ||
+            coluna == Math.abs(x) && linha - 1 == Math.abs(y) ||
+                coluna + 1 == Math.abs(x) && linha == Math.abs(y) ||
+                coluna + 1 == Math.abs(x) && linha + 2 == Math.abs(y) ||
+                coluna == Math.abs(x) && linha + 3 == Math.abs(y) ||
+                coluna - 2 == Math.abs(x) && linha + 3 == Math.abs(y) ||
+                coluna - 3 == Math.abs(x) && linha + 2 == Math.abs(y)){
+                // if (x-i == 2+j){
+                // if (linha == y || coluna2 == x){
+
+                //x=3 y=2
+                //1-1, 1-3
+                //(x-2)-
+
+                // if (coluna2==Math.abs(x-y) && linha == Math.abs(y)){
+                verde(document.getElementById(`casa${coluna * 8 + linha}`))
+                abled(document.getElementById(`casa${coluna * 8 + linha}`))
+                document.getElementById(`casa${coluna * 8 + linha}`)
             }
         }
     }
-    console.log(x, y)
+    console.log('Linha',x,'Coluna', y)
 }
 
 const none = (n) => n.setAttribute('class', 'none')
@@ -45,14 +62,51 @@ for (let i = 0; i < 8; i++) {
 
 
         btn.addEventListener('click', () => {
-            posiciona(btn.dataset)
-            btn.disabled = true
             btn.appendChild(img)
+            posiciona(btn.dataset)
 
+            for (let i = 0; i < 8; i++) {
+                for (let j = 0; j < 8; j++) {
+                    // btn.classList.contains('') 
+                    removerVerde(btn)
+                }
+            }
+            teste()
         })
+
         tabuleiro.appendChild(btn)
     }
 
 }
 
-//x += 2, y ++
+
+
+
+
+
+
+
+
+
+
+
+
+
+// btn.disabled = true
+            // disable(btn)
+            // const desativados = !document.getElementsByClassName(abled)
+            // const ativados = document.getElementsByClassName(abled)
+            // const ativados = document.getElementsByClassName(abled)
+            // desativados
+            // ativados.setAttribute("disabled","disabled")
+            // for (let i = 0; i < 8; i++) {
+            //     for (let j = 0; j < 8; j++) {
+            //         if (!btn.classList.contains('abled')) {
+            //             alert('não')
+            //             btn.setAttribute("disabled", "disabled")
+            //         // } else {
+            //         //     btn.setAttribute("disabled", "disabled")
+            //         }
+            //     }
+            // }
+    //if(x-i == 2+j) { diagonal

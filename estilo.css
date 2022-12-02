@@ -30,9 +30,26 @@
     background-image: linear-gradient(to top right, black, rgb(46, 46, 46))
 }
 
+.black:hover{
+    /* background-color: black; */
+    background-image: linear-gradient(to top right, black, rgb(46, 46, 46),black)
+}
+
 .white {
-    /* background-color: white; */
-    background-image: linear-gradient(to top right, white, blanchedalmond)
+    background-image: linear-gradient(to top right, white, blanchedalmond);
+    transition: .1s all ease;
+}
+
+.white:hover {
+    background-image: linear-gradient(to top right, white, blanchedalmond, #fef3c7)
+}
+
+.verde {
+    background-image: linear-gradient(to top right, var(--green), var(--green2))
+}
+
+.verde:hover {
+    background-image: linear-gradient(to top right, var(--green), var(--green2), var(--green))
 }
 
 #cavalo {
