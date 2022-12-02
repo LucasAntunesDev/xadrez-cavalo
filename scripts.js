@@ -16,14 +16,14 @@ const posiciona = ({ x, y }) => {
             // if (Math.abs(j) - 2 == Math.abs(x) && i - 1 == Math.abs(y) 
             // if(y+x == y+2 || x+1==x+1) {
 
-            if (coluna - 2 == Math.abs(x) && linha - 1 == Math.abs(y) ||
-            coluna - 3 == Math.abs(x) && linha == Math.abs(y) ||
-            coluna == Math.abs(x) && linha - 1 == Math.abs(y) ||
-                coluna + 1 == Math.abs(x) && linha == Math.abs(y) ||
-                coluna + 1 == Math.abs(x) && linha + 2 == Math.abs(y) ||
-                coluna == Math.abs(x) && linha + 3 == Math.abs(y) ||
-                coluna - 2 == Math.abs(x) && linha + 3 == Math.abs(y) ||
-                coluna - 3 == Math.abs(x) && linha + 2 == Math.abs(y)){
+            if (/*Baixo Direita 1*/coluna - 2 == Math.abs(x) && (linha - 1) == Math.abs(y) ||
+                /*Baixo Direita 2*/coluna - 1 == Math.abs(x) && (linha - 2) == Math.abs(y) ||
+                /*Cima Direita 1*/coluna + 1 == Math.abs(x) && linha - 2 == Math.abs(y) ||
+                /*Cima Direita 2*/coluna + 2 == Math.abs(x) && linha - 1 == Math.abs(y) ||
+                /*Cima Esquerda 1*/ coluna + 2 == Math.abs(x) && (linha + 1) == Math.abs(y) ||
+                /*Cima Esquerda 2*/ coluna + 1 == Math.abs(x) && (linha +  2) == Math.abs(y) ||
+                /*Baixo Esquerda 2*/coluna - 1 == Math.abs(x) && (linha + 2) == Math.abs(y)  ||
+                /*Baixo Esquerda 2*/coluna - 2 == Math.abs(x) && (linha + 1) == Math.abs(y)) {
                 // if (x-i == 2+j){
                 // if (linha == y || coluna2 == x){
 
@@ -34,11 +34,11 @@ const posiciona = ({ x, y }) => {
                 // if (coluna2==Math.abs(x-y) && linha == Math.abs(y)){
                 verde(document.getElementById(`casa${coluna * 8 + linha}`))
                 abled(document.getElementById(`casa${coluna * 8 + linha}`))
-                document.getElementById(`casa${coluna * 8 + linha}`)
+                document.getElementById(`casa${coluna * 8 + linha}`).innerHTML = x + ' ; ' + y
             }
         }
     }
-    console.log('Linha',x,'Coluna', y)
+    console.log('Linha', x, 'Coluna', y)
 }
 
 const none = (n) => n.setAttribute('class', 'none')
