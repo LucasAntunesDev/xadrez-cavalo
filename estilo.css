@@ -41,15 +41,16 @@
 }
 
 .white:hover {
-    background-image: linear-gradient(to top right, white, blanchedalmond, #fef3c7)
+    background-image: linear-gradient(to top right, white, blanchedalmond, #dad5c2)
 }
 
 .verde {
-    background-image: linear-gradient(to top right, var(--green), var(--green2))
+    background-image: linear-gradient(to top right, var(--green), var(--green2));
+    color: black;
 }
 
 .verde:hover {
-    background-image: linear-gradient(to top right, var(--green), var(--green2), var(--green))
+    background-image: linear-gradient(to top right, var(--green), var(--green2), #0b7753)
 }
 
 #cavalo {
