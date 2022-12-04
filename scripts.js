@@ -1,11 +1,8 @@
-const disable = (b) => document.getElementById(b).disabled = true
-const able = (b) => document.getElementById(b).disabled = false
 const abled = (a) => a.classList.add('abled')
 const verde = (v) => v.classList.add('verde')
 const removerVerde = (r) => r.classList.contains('verde') ? r.classList.remove('verde') : ''
-const btnVerde = document.getElementsByClassName('verde')
-const diferenca = (a, b) => Math.abs(a - b)
 
+//Prevê as possições possíveis
 const posiciona = ({ x, y }) => {
     for (let coluna = 0; coluna < 8; coluna++) {
         for (let linha = 0; linha < 8; linha++) {
@@ -14,12 +11,12 @@ const posiciona = ({ x, y }) => {
                 /*Cima Direita 1*/coluna + 1 == Math.abs(x) && linha - 2 == Math.abs(y) ||
                 /*Cima Direita 2*/coluna + 2 == Math.abs(x) && linha - 1 == Math.abs(y) ||
                 /*Cima Esquerda 1*/ coluna + 2 == Math.abs(x) && (linha + 1) == Math.abs(y) ||
-                /*Cima Esquerda 2*/ coluna + 1 == Math.abs(x) && (linha +  2) == Math.abs(y) ||
-                /*Baixo Esquerda 2*/coluna - 1 == Math.abs(x) && (linha + 2) == Math.abs(y)  ||
+                /*Cima Esquerda 2*/ coluna + 1 == Math.abs(x) && (linha + 2) == Math.abs(y) ||
+                /*Baixo Esquerda 2*/coluna - 1 == Math.abs(x) && (linha + 2) == Math.abs(y) ||
                 /*Baixo Esquerda 2*/coluna - 2 == Math.abs(x) && (linha + 1) == Math.abs(y)) {
                 verde(document.getElementById(`casa${coluna * 8 + linha}`))
                 abled(document.getElementById(`casa${coluna * 8 + linha}`))
-                document.getElementById(`casa${coluna * 8 + linha}`).innerHTML = x + ' ; ' + y
+                document.getElementById(`casa${coluna * 8 + linha}`).disbabled = true ? document.getElementById(`casa${coluna * 8 + linha}`).disbabled = false : ''
             }
         }
     }
@@ -45,55 +42,43 @@ for (let i = 0; i < 8; i++) {
         img.src = 'cavalo.png'
         img.setAttribute('id', 'cavalo')
 
-
+        var jogadas = 0
+        var ultimaJogada = jogadas - 1
         btn.addEventListener('click', () => {
             btn.appendChild(img)
             posiciona(btn.dataset)
-
+       
             for (let i = 0; i < 8; i++) {
                 for (let j = 0; j < 8; j++) {
-                    const botoes = document.getElementById(`casa${i * 8 + j}`) 
+                    let botoes = document.getElementById(`casa${i * 8 + j}`)
+                    botoes.classList.contains('verde') ? botoes.classList.add(`jogada${jogadas}`):console.log('não')
+                    console.log('i', 'jogada'+ultimaJogada)
+
+                    if(botoes.classList.contains('verde') && botoes.classList.contains(`jogada${jogadas-1}`)){
+                        // img.style.display = 'none'
+                        // btn.removeChild(img)
+                        botoes.classList.remove('jogada'+jogadas-1)
+                        botoes.classList.remove('verde')
+                        botoes.classList.remove('abled')
+                        // img.remove(btn)
+
+                    }
+                    
+                    botoes.classList.contains('jogada'+ultimaJogada)?removerVerde(botoes):console.log('não')
+                    
                     botoes.classList.contains('abled') ? '' : botoes.classList.add('disabled')
                     botoes.classList.contains('disabled') ? botoes.setAttribute('disabled', 'true') : ''
                     botoes.classList.contains('verde') ? botoes.removeAttribute('disabled') : ''
-                    // removerVerde(botoes)
                 }
             }
+
+            
+
+            jogadas++
+            console.log(jogadas)
         })
 
         tabuleiro.appendChild(btn)
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// btn.disabled = true
-            // disable(btn)
-            // const desativados = !document.getElementsByClassName(abled)
-            // const ativados = document.getElementsByClassName(abled)
-            // const ativados = document.getElementsByClassName(abled)
-            // desativados
-            // ativados.setAttribute("disabled","disabled")
-            // for (let i = 0; i < 8; i++) {
-            //     for (let j = 0; j < 8; j++) {
-            //         if (!btn.classList.contains('abled')) {
-            //             alert('não')
-            //             btn.setAttribute("disabled", "disabled")
-            //         // } else {
-            //         //     btn.setAttribute("disabled", "disabled")
-            //         }
-            //     }
-            // }
-    //if(x-i == 2+j) { diagonal

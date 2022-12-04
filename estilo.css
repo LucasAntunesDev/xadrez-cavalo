@@ -55,7 +55,7 @@
 
 #cavalo {
     max-height: calc(100vh / 9);
-    filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.342)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.288));
+    filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.863)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.562));
 }
 
 .none{
