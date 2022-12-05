@@ -20,7 +20,7 @@ const posiciona = ({ x, y }) => {
             }
         }
     }
-    console.log('Linha', x, 'Coluna', y)
+    // console.log('Linha', x, 'Coluna', y)
 }
 
 const none = (n) => n.setAttribute('class', 'none')
@@ -32,10 +32,7 @@ for (let i = 0; i < 8; i++) {
         btn.setAttribute('type', 'button')
         btn.setAttribute('data-x', i)
         btn.setAttribute('data-y', j)
-        let x = parseInt(btn.getAttribute('data-x'))
-        let y = parseInt(btn.getAttribute('data-y'))
         btn.setAttribute('id', `casa${i * 8 + j}`)
-        let casa = parseInt(btn.getAttribute('id'))
         const color = (i + j) % 2 === 0 ? 'black' : 'white'
         btn.setAttribute('class', `casa ${color}`)
         const img = document.createElement('img')
@@ -46,45 +43,31 @@ for (let i = 0; i < 8; i++) {
         var ultimaJogada = jogadas - 1
         btn.addEventListener('click', () => {
             btn.appendChild(img)
-            img.classList.add('cavalo'+jogadas)
+            img.classList.add('cavalo' + jogadas)
             posiciona(btn.dataset)
-       
+
             for (let i = 0; i < 8; i++) {
                 for (let j = 0; j < 8; j++) {
                     let botoes = document.getElementById(`casa${i * 8 + j}`)
-                    botoes.classList.contains('verde') ? botoes.classList.add(`jogada${jogadas}`):console.log('não')
-                    console.log('i', 'jogada'+ultimaJogada)
+                    botoes.classList.contains('verde') ? botoes.classList.add(`jogada${jogadas}`) : ''
 
-                    if(botoes.classList.contains('verde') && botoes.classList.contains(`jogada${jogadas-1}`)){
-                        // img.style.display = 'none'
-                        // btn.removeChild(img)
-                        console.log('sim')
-                        let cavaloAnterior = document.getElementsByClassName('cavalo'+jogadas-1)
-                        botoes.classList.remove('jogada'+jogadas-1)
-                        
+                    if (botoes.classList.contains('verde') && botoes.classList.contains(`jogada${jogadas - 1}`)) {
+                        botoes.classList.remove('jogada' + jogadas - 1)
                         botoes.classList.remove('verde')
                         botoes.classList.remove('abled')
-                        // botoes.classList.add('disabled')
-                        // botoes.classList.remove('jogada'+jogadas-1)
-                        botoes.classList.remove('jogada'+jogadas)
-                        // document.getElementsByClassName('cavalo'+jogadas-1).classList.add('none')
-                        // img.remove(btn)
+                        botoes.classList.remove('jogada' + jogadas)
 
                     }
-                    
-                    botoes.classList.contains('jogada'+ultimaJogada)?removerVerde(botoes):console.log('não')
-                    
+
+                    botoes.classList.contains('jogada' + ultimaJogada) ? removerVerde(botoes) : ''
+
                     botoes.classList.contains('abled') ? '' : botoes.classList.add('disabled')
                     botoes.classList.contains('disabled') ? botoes.setAttribute('disabled', 'true') : ''
                     botoes.classList.contains('verde') ? botoes.removeAttribute('disabled') : ''
                     botoes.hasChildNodes ? abled(botoes) : ''
                 }
             }
-
-            
-
             jogadas++
-            console.log(jogadas)
         })
 
         tabuleiro.appendChild(btn)

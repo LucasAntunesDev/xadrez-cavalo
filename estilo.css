@@ -53,7 +53,7 @@
     background-image: linear-gradient(to top right, var(--green), var(--green2), #0b7753)
 }
 
-#cavalo {
+img {
     max-height: calc(100vh / 9);
     filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.863)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.562));
 }
