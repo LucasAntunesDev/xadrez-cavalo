@@ -46,6 +46,7 @@ for (let i = 0; i < 8; i++) {
         var ultimaJogada = jogadas - 1
         btn.addEventListener('click', () => {
             btn.appendChild(img)
+            img.classList.add('cavalo'+jogadas)
             posiciona(btn.dataset)
        
             for (let i = 0; i < 8; i++) {
@@ -57,9 +58,16 @@ for (let i = 0; i < 8; i++) {
                     if(botoes.classList.contains('verde') && botoes.classList.contains(`jogada${jogadas-1}`)){
                         // img.style.display = 'none'
                         // btn.removeChild(img)
+                        console.log('sim')
+                        let cavaloAnterior = document.getElementsByClassName('cavalo'+jogadas-1)
                         botoes.classList.remove('jogada'+jogadas-1)
+                        
                         botoes.classList.remove('verde')
                         botoes.classList.remove('abled')
+                        // botoes.classList.add('disabled')
+                        // botoes.classList.remove('jogada'+jogadas-1)
+                        botoes.classList.remove('jogada'+jogadas)
+                        // document.getElementsByClassName('cavalo'+jogadas-1).classList.add('none')
                         // img.remove(btn)
 
                     }
@@ -69,6 +77,7 @@ for (let i = 0; i < 8; i++) {
                     botoes.classList.contains('abled') ? '' : botoes.classList.add('disabled')
                     botoes.classList.contains('disabled') ? botoes.setAttribute('disabled', 'true') : ''
                     botoes.classList.contains('verde') ? botoes.removeAttribute('disabled') : ''
+                    botoes.hasChildNodes ? abled(botoes) : ''
                 }
             }
 
