@@ -43,7 +43,7 @@ for (let i = 0; i < 8; i++) { //Linhas
         btn.setAttribute('id', `casa${i * 8 + j}`)
         const color = (i + j) % 2 === 0 ? 'black' : 'white'
         btn.setAttribute('class', `casa ${color}`)
-         //Cria a imagem do cavalo e adiona atributos a ela
+        //Cria a imagem do cavalo e adiona atributos a ela
         const img = document.createElement('img')
         img.src = 'cavalo.png'
         img.setAttribute('id', 'cavalo')
@@ -51,14 +51,21 @@ for (let i = 0; i < 8; i++) { //Linhas
         var jogadas = 0
         var ultimaJogada = jogadas - 1
         btn.addEventListener('click', () => {
-            btn.appendChild(img)
+            jogadas < 1 ? btn.appendChild(img) : ''
             img.classList.add('cavalo' + jogadas)
             posiciona(btn.dataset)
+
+            //Verifica a cada posição 
+            let posicaoVerificada = btn.dataset
+            console.log('verified', posicaoVerificada)
 
             for (let i = 0; i < 8; i++) {
                 for (let j = 0; j < 8; j++) {
                     let botoes = document.getElementById(`casa${i * 8 + j}`)
                     botoes.classList.contains('verde') ? botoes.classList.add(`jogada${jogadas}`) : ''
+
+                    let posicaoAtual = botoes.dataset
+                    console.log('atual', posicaoAtual)
 
                     if (botoes.classList.contains('verde') && botoes.classList.contains(`jogada${jogadas - 1}`)) {
                         //Remove atributos se na próxima jogada
@@ -70,6 +77,15 @@ for (let i = 0; i < 8; i++) { //Linhas
                         botoes.classList.remove('jogada' + jogadas)
 
                     }
+
+                    //Verifica se a posição atual (verificada)
+                    //é a mesma casa que foi clicada
+                    if (posicaoAtual == posicaoVerificada) {
+                        console.log('sim')
+                        // img.style.display = 'none'
+                        botoes.appendChild(img)
+                    }
+
                     //Verifica algumas condições, se verdadeiras adicionam/removem atributos
                     //da casa
                     botoes.classList.contains('jogada' + ultimaJogada) ? removerVerde(botoes) : ''
