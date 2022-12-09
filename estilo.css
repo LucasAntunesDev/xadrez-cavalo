@@ -46,7 +46,7 @@
 
 .verde {
     background-image: linear-gradient(to top right, var(--green), var(--green2));
-    color: black;
+    /* color: black; */
 }
 
 .verde:hover {
