@@ -5,6 +5,8 @@ const verde = (v) => v.classList.add('verde')
 //Remove a cor verde de um botão
 const removerVerde = (r) => r.classList.contains('verde') ? r.classList.remove('verde') : ''
 
+let posicaoC = null;
+
 const posiciona = ({ x, y }) => {
     //Prevê as possições possíveis para o cavalo se mover
     for (let coluna = 0; coluna < 8; coluna++) {
@@ -36,36 +38,43 @@ const tabuleiro = document.getElementById('tabuleiro')
 for (let i = 0; i < 8; i++) { //Linhas
     for (let j = 0; j < 8; j++) { //Colunas
         //Cria um botão e adiona atributos a ele
-        const btn = document.createElement('button')
-        btn.setAttribute('type', 'button')
-        btn.setAttribute('data-x', i)
-        btn.setAttribute('data-y', j)
-        btn.setAttribute('id', `casa${i * 8 + j}`)
+        const d = document.createElement('button')
+        d.setAttribute('type', 'button')
+        d.setAttribute('data-x', i)
+        d.setAttribute('data-y', j)
+        d.setAttribute('id', `casa${i * 8 + j}`)
         const color = (i + j) % 2 === 0 ? 'black' : 'white'
-        btn.setAttribute('class', `casa ${color}`)
-        //Cria a imagem do cavalo e adiona atributos a ela
-        const img = document.createElement('img')
-        img.src = 'cavalo.png'
-        img.setAttribute('id', 'cavalo')
-
+        d.setAttribute('class', `casa ${color}`)
+        //Verifica as jogadas
         var jogadas = 0
         var ultimaJogada = jogadas - 1
-        btn.addEventListener('click', () => {
-            jogadas < 1 ? btn.appendChild(img) : ''
-            img.classList.add('cavalo' + jogadas)
-            posiciona(btn.dataset)
+        //Cria a imagem do cavalo e adiona atributos a ela
+        let img = document.createElement('img')
+        img.src = 'cavalo.png'
+        img.setAttribute('id', 'cavalo')
+        
+        d.addEventListener('click', () => {
+            // jogadas < 1 ? d.appendChild(img) : 
+            // img.classList.add('cavalo' + jogadas)
+            posiciona(d.dataset)
+            if (posicaoC !== null) {
+                posicaoC.innerHTML = '';
+            }
+            d.innerHTML = '<img src="cavalo.png">';
+            posicaoC = d;
 
             //Verifica a cada posição 
-            let posicaoVerificada = btn.dataset
-            console.log('verified', posicaoVerificada)
+            let posicaoVerificada = d.id
+            // console.log('verified', posicaoVerificada)
+            // console.log('verified', posicaoVerificada)
 
             for (let i = 0; i < 8; i++) {
                 for (let j = 0; j < 8; j++) {
                     let botoes = document.getElementById(`casa${i * 8 + j}`)
                     botoes.classList.contains('verde') ? botoes.classList.add(`jogada${jogadas}`) : ''
 
-                    let posicaoAtual = botoes.dataset
-                    console.log('atual', posicaoAtual)
+                    let posicaoAtual = botoes.id
+                    // console.log('atual', posicaoAtual)
 
                     if (botoes.classList.contains('verde') && botoes.classList.contains(`jogada${jogadas - 1}`)) {
                         //Remove atributos se na próxima jogada
@@ -77,17 +86,7 @@ for (let i = 0; i < 8; i++) { //Linhas
                         botoes.classList.remove('jogada' + jogadas)
 
                     }
-
-                    //Verifica se a posição atual (verificada)
-                    //é a mesma casa que foi clicada
-                    if (posicaoAtual == posicaoVerificada) {
-                        console.log('sim')
-                        // img.style.display = 'none'
-                        botoes.appendChild(img)
-                    }
-
-                    //Verifica algumas condições, se verdadeiras adicionam/removem atributos
-                    //da casa
+                    console.log('atual', posicaoAtual ,'verifica', posicaoVerificada)
                     botoes.classList.contains('jogada' + ultimaJogada) ? removerVerde(botoes) : ''
                     botoes.classList.contains('abled') ? '' : botoes.classList.add('disabled')
                     botoes.classList.contains('disabled') ? botoes.setAttribute('disabled', 'true') : ''
@@ -98,7 +97,7 @@ for (let i = 0; i < 8; i++) { //Linhas
             jogadas++
         })
         //Adiciona o botão como filho do tabueiro
-        tabuleiro.appendChild(btn)
+        tabuleiro.appendChild(d)
     }
 
 }
