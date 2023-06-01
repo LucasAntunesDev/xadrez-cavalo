@@ -1,4 +1,5 @@
 let posicao = null;
+const cavalo = '<img src="cavalo.png">';
 
 const posiciona = ({ x, y }) => {
   //Prevê as possições possíveis para o cavalo se mover
@@ -55,8 +56,8 @@ for (let i = 0; i < 8; i++) {
       if (posicao !== null) {
         posicao.innerHTML = "";
       }
-      //Adiciona a imgame do cavalo
-      botao.innerHTML = '<img src="cavalo.png">';
+      //Adiciona a imagem do cavalo
+      botao.innerHTML = cavalo;
       posicao = botao;
 
       //Verifica algumas características das casas
