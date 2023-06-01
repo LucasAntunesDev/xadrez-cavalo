@@ -1,4 +1,3 @@
-//Adiciona a classe abled
 let posicao = null;
 
 const posiciona = ({ x, y }) => {
@@ -81,15 +80,11 @@ for (let i = 0; i < 8; i++) {
             botoes.classList.remove("jogada" + jogadas);
           }
           //Desativa/ativa os botões
-          botoes.classList.contains("abled")
-            ? ""
-            : botoes.classList.add("disabled");
-          botoes.classList.contains("disabled")
-            ? botoes.setAttribute("disabled", "true")
-            : "";
-          botoes.classList.contains("verde")
-            ? botoes.removeAttribute("disabled")
-            : "";
+          if(!botoes.classList.contains("abled")) botoes.classList.add("disabled");
+          
+          if(botoes.classList.contains("disabled")) botoes.setAttribute("disabled", "true")
+          
+          if(botoes.classList.contains("verde")) botoes.removeAttribute("disabled")
         }
       }
       jogadas++;
