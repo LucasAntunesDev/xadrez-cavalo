@@ -40,24 +40,24 @@ for (let i = 0; i < 8; i++) {
   for (let j = 0; j < 8; j++) {
     //Colunas
     //Cria um botão e adiona atributos a ele
-    const d = document.createElement("button");
-    d.setAttribute("type", "button");
-    d.setAttribute("data-x", i);
-    d.setAttribute("data-y", j);
-    d.setAttribute("id", `casa${i * 8 + j}`);
+    const botao = document.createElement("button");
+    botao.setAttribute("type", "button");
+    botao.setAttribute("data-x", i);
+    botao.setAttribute("data-y", j);
+    botao.setAttribute("id", `casa${i * 8 + j}`);
     const color = (i + j) % 2 === 0 ? "black" : "white";
-    d.setAttribute("class", `casa ${color}`);
+    botao.setAttribute("class", `casa ${color}`);
     //Conta as jogadas
     var jogadas = 0;
 
-    d.addEventListener("click", () => {
-      posiciona(d.dataset);
+    botao.addEventListener("click", () => {
+      posiciona(botao.dataset);
       if (posicao !== null) {
         posicao.innerHTML = "";
       }
       //Adiciona a imgame do cavalo
-      d.innerHTML = '<img src="cavalo.png">';
-      posicao = d;
+      botao.innerHTML = '<img src="cavalo.png">';
+      posicao = botao;
 
       //Verifica algumas características das casas
       //(usado para desabilita-las, remover fundo verde, entre outros)
@@ -90,6 +90,6 @@ for (let i = 0; i < 8; i++) {
       jogadas++;
     });
     //Adiciona o botão como filho do tabueiro
-    tabuleiro.appendChild(d);
+    tabuleiro.appendChild(botao);
   }
 }
